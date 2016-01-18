@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<meta name="viewport" content="width=100%, initial-scale=1.0, user-scalable=no">
+
+<head>
+	<link rel="stylesheet" href="css/styles.css">
+	 
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+	<script type="text/javascript" src="js/underscore.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+ 
+</head>
+<body>
+
+
+<div id="content">
+
+
+	<div class="draggables">
+
+	<!-- shit to drag-->
+
+		<div class="draggable-answer rounded-button"><p>Children</p></div>
+		<div class="draggable-answer rounded-button"><p>Animals</p></div>
+		<div class="draggable-answer rounded-button"><p>Island</p></div>
+		<div class="draggable-answer rounded-button"><p>Boat</p></div>
+
+	</div>
+
+	<div class="droppables">
+
+	<!-- where shit gets dropped to -->
+	  <div class="droppable-area"><img src="img/1.png" width="100%" /><img class="tick" src="img/tick.png"/></div>
+	  <div class="droppable-area"><img src="img/2.png" width="100%" /><img class="tick" src="img/tick.png"/></div>
+	  <div class="droppable-area"><img src="img/4.png" width="100%" /><img class="tick" src="img/tick.png"/></div>
+	  <div class="droppable-area"><img src="img/3.png" width="100%" /><img class="tick" src="img/tick.png"/></div>
+
+	</div>
+
+	<div id="reset">
+		<img src="img/reset.png" onclick="location.reload();"/>
+	</div>
+
+</div>
+
+</body>
+</html>

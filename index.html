@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<meta name="viewport" content="width=100%, initial-scale=1.0, user-scalable=no">
+
+<head>
+ <link rel="stylesheet" href="css/styles.css">
+ 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+ 
+<script type="text/javascript">
+ var correct = 0;
+$( init );
+ 
+function init() {
+
+  $('.drags').draggable( {
+      containment: '#content',
+      cursor: 'move',
+      revert: true
+    } );
+  $('#makeMeDraggable1').draggable( {
+      containment: '#content',
+      cursor: 'move',
+      revert: true
+    } );
+
+  $('#makeMeDraggable2').draggable( {
+      containment: '#content',
+      cursor: 'move',
+      revert: true
+    } );
+
+  $('#makeMeDraggable3').draggable( {
+      containment: '#content',
+      cursor: 'move',
+      revert: true
+    } );
+
+  $('#makeMeDraggable4').draggable( {
+      containment: '#content',
+      cursor: 'move',
+      revert: true
+    } );
+
+  $('#makeMeDroppable').droppable( {
+  	accept: '#makeMeDraggable1',
+  	//hoverClass: "right",
+    drop: handleDropEvent
+  } );
+
+  $('#makeMeDroppable2').droppable( {
+  	accept: '#makeMeDraggable2',
+  	//hoverClass: "right",
+    drop: handleDropEvent
+  } );
+  $('#makeMeDroppable3').droppable( {
+  	accept: '#makeMeDraggable3',
+  	//hoverClass: "right",
+    drop: handleDropEvent
+  } );
+
+  $('#makeMeDroppable4').droppable( {
+  	accept: '#makeMeDraggable4',
+  	//hoverClass: "right",
+    drop: handleDropEvent
+  } );
+}
+
+function handleDropEvent( event, ui ) {
+  var draggable = ui.draggable;
+     ui.draggable.draggable( 'disable' );
+     ui.draggable.removeClass("enabled ans");
+     ui.draggable.addClass("dragRight");
+     $(this).addClass("right");
+     ui.draggable.removeAttr("style");
+    $(this).droppable( 'disable' );
+    $(this).children().show();
+      ui.draggable.appendTo(this);
+    ui.draggable.draggable( 'option', 'revert', false );
+  correct ++;
+  if (correct == 4) {
+    audio2.play();
+  	$("#win").show(0, callback);
+
+  	function callback() {
+      setTimeout(function() {
+        $( "#win" ).hide();
+      }, 4000 );
+  	}	
+  }
+}
+
+  	function showAnswers() {
+  		$('body').load('pearson-test.html body');
+  		setTimeout(function() {
+  		$(".enabled").draggable( 'disable' );
+  		$("#content").load();
+  		$("#content").load(" #content");
+   		$(".enabled").addClass('shown');
+   		$(".drop").addClass('right');
+      $("#cheat").addClass('disabled');
+      $("#cheat").hide();
+  		$("#makeMeDraggable1").appendTo("#makeMeDroppable");
+  		$("#makeMeDraggable2").appendTo("#makeMeDroppable2");
+  		$("#makeMeDraggable3").appendTo("#makeMeDroppable3");
+  		$("#makeMeDraggable4").appendTo("#makeMeDroppable4");
+  		$("#makeMeDraggable1").position( { of: $("#makeMeDroppable"), my: 'middle bottom', at: 'middle bottom' } );
+  		$("#makeMeDraggable2").position( { of: $("#makeMeDroppable2"), my: 'middle bottom', at: 'middle bottom' } );
+  		$("#makeMeDraggable3").position( { of: $("#makeMeDroppable3"), my: 'middle bottom', at: 'middle bottom' } );
+  		$("#makeMeDraggable4").position( { of: $("#makeMeDroppable4"), my: 'middle bottom', at: 'middle bottom' } );
+  	},400);
+  	}
+</script>
+ 
+</head>
+<body>
+  <audio id="yay" src="audio/win.m4a"></audio>
+<div id = "win">
+	<div id = "portrait">
+		<img src = "img/winport.png" width="100%" />
+	</div>
+	<div id = "landscape">
+		<img src = "img/winland.png" width="100%" />
+	</div>
+</div>
+
+	<audio id="landr" src="audio/landr.mp3"></audio>
+	<div id="content">
+ <div id="top"><img src="img/Audio.png" onclick="audio.play();"style="display:inline !important;vertical-align:middle"/><h2 style="display:inline !important;vertical-align:middle">Look and match</h2></div>
+
+ <div id ="answers">
+  <div id="makeMeDraggable1" class="drags ans enabled"><p>Children</p></div>
+  <div id="makeMeDraggable2" class="drags ans enabled"><p>Animals</p></div>
+  <div id="makeMeDraggable3" class="drags ans enabled"><p>Island</p></div>
+  <div id="makeMeDraggable4" class="drags ans enabled"><p>Boat</p></div>
+
+</div>
+<div id = "image">
+  <div id="makeMeDroppable" class = "drop"><img src="img/1.png" width="100%" /><img class="tick" src="img/tick.png"/></div>
+  <div id="makeMeDroppable2" class = "drop"><img src="img/2.png" width="100%" /><img class="tick" src="img/tick.png"/></div>
+  <div id="makeMeDroppable3" class = "drop"><img src="img/4.png" width="100%" /><img class="tick" src="img/tick.png"/></div>
+  <div id="makeMeDroppable4" class = "drop"><img src="img/3.png" width="100%" /><img class="tick" src="img/tick.png"/></div>
+ </div>
+
+ <div id = "reset">
+ 	<img src = "img/showans.png" id = "cheat" onclick="showAnswers();"/>
+ 	<img src = "img/reset.png" onclick="location.reload();"/>
+ </div>
+</div>
+<script>
+var audio2 = $("#yay")[0];
+var audio = $("#landr")[0];
+$(function () {
+    var parent = $("#answers");
+    var divs = parent.children();
+    while (divs.length) {
+        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+    }
+});
+
+$(function () {
+    var parent = $("#image");
+    var divs = parent.children();
+    while (divs.length) {
+        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+    }
+});
+</script>
+</body>
+</html>
